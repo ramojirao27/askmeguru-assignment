@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import hero from '../assets/hero.png';
 import { IoPlayCircle } from "react-icons/io5";
+import { ImCross } from "react-icons/im";
 
 const Hero = () => {
     const [showVideo, setShowVideo] = useState(false);
@@ -12,9 +13,29 @@ const Hero = () => {
 
    
     <div className='flex flex-col  gap-10 lg:flex-row lg:items-center mx-10 my-20'>
+        {showVideo && (
+        <div className="mt-6 absolute z-30 ">
+         <div className='flex items-start'>
+         <iframe
+            width="1024"
+            height="600"
+            src="https://youtu.be/gnyoUXgl74c?si=laE2oETi5vVhCRc_"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <div onClick={()=>setShowVideo(false )} className='bg-red-800 p-2 cursor-pointer'>
+          <ImCross size={"20px"}/>
+
+          </div>
+         </div>
+          
+        </div>
+      )}
             <div className='relative inline-block min-w-[431px]'>
                 <img className='w-full ' src={hero} alt="" />
-                <div className='absolute inset-0 flex items-center justify-center text-red-500 cursor-pointer'><IoPlayCircle size={100}/></div>
+                <div onClick={()=>setShowVideo(true)} className='absolute inset-0 flex items-center justify-center text-red-500 cursor-pointer'><IoPlayCircle size={100}/></div>
             </div>
             <div className='mx-8 flex flex-col gap-10'>
                 <h1 className='text-5xl font-semibold'>
